@@ -1,0 +1,22 @@
+format long
+R=10;
+f=@(x)sqrt(R.^2-x.^2);
+a=-R;
+b=R;
+N=500;
+x=linspace(a,b,N);
+y=f(x);
+figure(1);
+clf;
+plot(x,y);
+hold on;
+axis equal;
+plot([a,b],[0,0]);
+s1=pi*R^2;
+s2=2*trapz(x,y);
+s3=integral(f,a,b)*2;
+fprintf("porównanie wyników\n");
+fprintf("wynik obliczony ze wzoru na pole koła = %.10f\n",s1);
+fprintf("wynik obliczony przez trapz = %f\n",s2);
+fprintf("wynik obliczony przez integral = %f\n",s3);
+fprintf("różnica procentowa = %f%%\n",abs(((s1-s2)/s1)*100));
